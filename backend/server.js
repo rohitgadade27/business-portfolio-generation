@@ -63,7 +63,7 @@ app.post("/send-enquiry", async (req, res) => {
           </p>
         </div>
       `
-    });
+    };
 
     await transporter.sendMail(mailOptions);
 
