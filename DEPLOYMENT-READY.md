@@ -8,7 +8,7 @@ Your **Vijay Enterprises** business portfolio website is fully prepared for host
 
 ## 🎯 QUICK DEPLOYMENT OPTIONS
 
-### **Option 1: GitHub + Vercel + Render (Recommended)**
+### **Option 1: GitHub + Vercel (Recommended)**
 
 #### **Step 1: Create GitHub Repository**
 1. Go to https://github.com/new
@@ -24,35 +24,21 @@ git branch -M main
 git push -u origin main
 ```
 
-#### **Step 3: Deploy Backend to Render**
-1. Go to https://render.com → New → Web Service
-2. Connect GitHub → Select your repository
-3. Configure:
-   - **Name**: `vijay-enterprises-backend`
-   - **Root Directory**: `backend`
-   - **Environment**: `Node`
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-4. **Environment Variables**:
-   ```
-   EMAIL_USER = rgadade75@gmail.com
-   EMAIL_PASS = zdjh nwbk ylpc kvdi
-   FRONTEND_URL = https://your-frontend-url.vercel.app
-   ```
-5. Click **Create** → Get your backend URL
-
-#### **Step 4: Deploy Frontend to Vercel**
+#### **Step 3: Deploy Frontend + Backend to Vercel**
 1. Go to https://vercel.com → New Project
-2. Import GitHub repository
+2. Import the GitHub repository
 3. Configure:
    - **Framework**: Vite
    - **Build Command**: `pnpm run build`
    - **Output Directory**: `dist`
 4. **Environment Variables**:
    ```
-   VITE_API_URL = https://your-backend-url.onrender.com
+   EMAIL_USER = rgadade75@gmail.com
+   EMAIL_PASS = <your Gmail app password>
    ```
 5. Click **Deploy**
+
+> With this setup, the frontend and backend run in the same Vercel project. The contact form posts to `/api/send-enquiry`, so no separate backend host is required.
 
 ---
 
@@ -86,7 +72,7 @@ Use Firebase Functions or stick with Render.
 
 ## 📧 EMAIL CONFIGURATION
 
-Your contact form will send emails to: **rgadade@gmail.com**
+Your contact form will send emails to: **rgadade75@gmail.com**
 
 **Required Environment Variables:**
 - `EMAIL_USER`: Your Gmail address

@@ -1,0 +1,6 @@
+PS C:\Users\user\Downloads\business-portfolio-generation> cd backend
+
+
+PS C:\Users\user\Downloads\business-portfolio-generation\backend> node server.js
+
+

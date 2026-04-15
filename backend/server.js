@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
@@ -6,12 +7,29 @@ const app = express();
 
 // Get port from environment or default to 5000
 const PORT = process.env.PORT || 5000;
+const EMAIL_USER = process.env.EMAIL_USER;
+const EMAIL_PASS = process.env.EMAIL_PASS;
+
+if (!EMAIL_USER || !EMAIL_PASS) {
+  console.error("Missing EMAIL_USER or EMAIL_PASS environment variables.");
+  process.exit(1);
+}
 
 // CORS configuration for production
+const allowedOrigins = process.env.FRONTEND_URL
+  ? process.env.FRONTEND_URL.split(",").map((origin) => origin.trim())
+  : ["http://localhost:3000"];
+
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin) || allowedOrigins.includes("*")) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
-  optionSuccessStatus: 200
+  optionsSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
@@ -34,14 +52,14 @@ app.post("/send-enquiry", async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+        user: EMAIL_USER,
+        pass: EMAIL_PASS
       }
     });
 
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: "rgadade@gmail.com",
+      from: EMAIL_USER,
+      to: "rgadade75@gmail.com",
       subject: `New Project Enquiry from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -83,6 +101,6 @@ app.post("/send-enquiry", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Vijay Enterprises API running on port ${PORT}`);
-  console.log(`📧 Email service configured for: rgadade@gmail.com`);
+  console.log(` Vijay Enterprises API running on port ${PORT}`);
+  console.log(`📧 Email service configured for: rgadade75@gmail.com`);
 });

@@ -53,7 +53,7 @@ export default function Footer() {
               </div>
               <div className="footer-contact-item">
                 <span className="contact-icon">✉️</span>
-                <a href="mailto:rgadade@gmail.com">rgadade@gmail.com</a>
+                <a href="mailto:rgadade75@gmail.com">rgadade75@gmail.com</a>
               </div>
               <div className="footer-contact-item">
                 <span className="contact-icon">📍</span>

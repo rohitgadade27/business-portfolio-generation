@@ -15,10 +15,11 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
-      const response = await axios.post(`${apiUrl}/send-enquiry`, formData)
+      const apiUrl = import.meta.env.VITE_API_URL || '/api'
+      await axios.post(`${apiUrl}/send-enquiry`, formData)
       alert('Enquiry Sent Successfully')
       setFormData({ name: '', email: '', phone: '', service: '', message: '' })
+      setSubmitted(true)
     } catch (error) {
       alert('Failed to send enquiry. Please try again.')
       console.error(error)
@@ -42,8 +43,8 @@ export default function Contact() {
     {
       icon: '✉️',
       label: 'Email',
-      value: 'rgadade@gmail.com',
-      link: 'mailto:rgadade@gmail.com',
+      value: 'rgadade75@gmail.com',
+      link: 'mailto:rgadade75@gmail.com',
     },
     {
       icon: '📍',
